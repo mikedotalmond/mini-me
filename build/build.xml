@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="minime post-build tasks" default="default" basedir="../">
+	
+	<!-- project properties -->
+	<property name="projectName" value="minime"/>
+	<property name="projectPath" value="mikedotalmond/site"/>
+	<!-- /project properties -->
+	
+	
+	<!-- import contrib for regex in getBuildVersion -->
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+		<pathelement location="${basedir}/build/lib/ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
+	
+	
+	<!-- build properties -->
+	<property name="dir.deploy" value="${basedir}/deploy"/>
+	<property name="file.deployedJS" value="${dir.deploy}/js/${projectName}.min.js"/>
+	
+	<property name="file.flash" value="${basedir}/bin/flash/bin/${projectName}.swf"/>
+	<property name="file.html5" value="${basedir}/bin/html5/bin/${projectName}.js"/>
+	<property name="dir.html5Img" value="${basedir}/bin/html5/bin/img"/>
+	<!-- /build properties -->
+	
+	
+	<!-- default task -->
+	<target name="default" depends="clean, getBuildVersion, deployHTML5, deployFlash">
+		<echo>${projectName} ${version.full} built and deployed</echo>
+	</target>
+	
+	
+	<!-- clean deploy folders -->
+	<target name="clean">
+		<delete file="${dir.deploy}/js/${projectName}.min.js" failonerror="false"/>
+		<delete failonerror="false">
+			<fileset dir="${dir.deploy}/swf" />
+			<fileset dir="${dir.deploy}/img" />
+		</delete>
+	</target>
+	
+	
+	<!-- minimise and deploy the JS -->
+	<!-- reqires node js with uglifyjs installed - https://github.com/mishoo/UglifyJS2 -->
+	<target name="uglifyJS">
+		<echo>processing ${file.html5}</echo>
+		<exec executable="cmd">
+			<arg value="/c"/>
+			<arg value="uglifyjs"/>
+			<arg value="${file.html5}"/>
+			<arg value="-m"/>
+			<arg value="-o"/>
+			<arg value="${dir.deploy}/js/${projectName}.min.js"/>
+		</exec>
+		<echo>built and depolyed ${dir.deploy}/js/${projectName}.min.js</echo>
+	</target>
+	
+	
+	<!-- uglifyJS and deploy html5 assets -->
+	<target name="deployHTML5" depends="uglifyJS">
+		<copy todir="${dir.deploy}/img" overwrite="true" failonerror="false"><fileset dir="${dir.html5Img}"/></copy>
+	</target>
+	
+	
+	<!--  deploy flash -->
+	<target name="deployFlash">
+		<copy file="${file.flash}" tofile="${dir.deploy}/swf/${projectName}.swf" overwrite="true" failonerror="false"/>
+	</target>
+	
+	
+	<!-- grab version info from Version.hx -->
+	<target name="getBuildVersion">
+		<loadfile property="file.version" srcFile="${basedir}/src/${projectPath}/${projectName}/Version.hx"/>
+		<propertyregex property="version.major" regexp="((?&lt;=Major:Int = )[0-9]*(?=;))" input="${file.version}" select="\1" casesensitive="false" override="true"/>
+		<propertyregex property="version.minor" regexp="((?&lt;=Minor:Int = )[0-9]*(?=;))" input="${file.version}" select="\1" casesensitive="false" override="true"/>
+		<propertyregex property="version.build" regexp="((?&lt;=Build:Int = )[0-9]*(?=;))" input="${file.version}" select="\1" casesensitive="false" override="true"/>
+		<propertyregex property="version.revision" regexp="((?&lt;=Revision:int = )[0-9]*(?=;))" input="${file.version}" select="\1" casesensitive="false" override="true"/>
+		<property name="version.full" value="${version.major}.${version.minor}.${version.build}.${version.revision}"/>
+		<echo>Parsed ${projectName} version as: ${version.full}</echo>
+	</target>
+</project>
