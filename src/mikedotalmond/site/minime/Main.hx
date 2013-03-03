@@ -37,9 +37,7 @@ class Main extends Sprite {
 		
 		trace("[minime] " + Version.toString());
 		
-		alpha 	= 0;
-		
-		head 	= new Head(new HeadParts(this));
+		head = new Head(new HeadParts(this));
 		
 		Actuate.tween(this, .5, { alpha:1 } ).delay(.25).onComplete(start);
 	}
@@ -54,6 +52,7 @@ class Main extends Sprite {
 
 	public function new() {
 		super();	
+		alpha = 0;
 		addEventListener(Event.ADDED_TO_STAGE, added);
 	}
 

@@ -1,8 +1,11 @@
 package mikedotalmond.site.minime.display;
 
-import flash.display.BitmapData;
-import flash.display.Sprite;
+import com.eclecticdesignstudio.motion.Actuate;
 import nme.display.Bitmap;
+import nme.display.BitmapData;
+import nme.display.PixelSnapping;
+import nme.display.Sprite;
+import nme.events.MouseEvent;
 import nme.Lib;
 
 /**
@@ -13,41 +16,45 @@ import nme.Lib;
 @:final class HeadParts {
 	
 	
-	public var container				:Sprite;
+	public var parent(default, null)	:Sprite;
+	public var container(default, null)	:Sprite;
 	
-	public var body(default, null)		:Bitmap;
-	public var mouth(default, null)		:Bitmap;
-	public var leftBrow(default, null)	:Bitmap;
-	public var rightBrow(default, null)	:Bitmap;
-	public var leftEye(default, null)	:Bitmap;
-	public var rightEye(default, null)	:Bitmap;
+	public var body(default, null)		:Sprite;
+	public var mouth(default, null)		:Sprite;
+	public var leftBrow(default, null)	:Sprite;
+	public var rightBrow(default, null)	:Sprite;
+	public var leftEye(default, null)	:Sprite;
+	public var rightEye(default, null)	:Sprite;
 	
 	
 	/**
 	 * 
 	 * @param	container
 	 */
-	public function new(container:Sprite) {
+	public function new(parent:Sprite) {
 		
-		this.container = container;
+		container = new Sprite();
 		
-		body = getBitmap("img/body.png", 37, 23, false);
-		container.addChild(body);
+		body = getSprite("img/body.png", 37, 23, false);
+		parent.addChild(body);
 		
-		mouth = getBitmap("img/mouth.png", 157, 198.5);
+		mouth = getSprite("img/mouth.png", 157, 198.5);
 		container.addChild(mouth);
 		
-		leftBrow = getBitmap("img/leftBrow.png", 103, 104);
+		leftBrow = getSprite("img/leftBrow.png", 103, 104);
 		container.addChild(leftBrow);
 		
-		rightBrow = getBitmap("img/rightBrow.png", 186, 96.5);
+		rightBrow = getSprite("img/rightBrow.png", 186, 96.5);
 		container.addChild(rightBrow);
 		
-		leftEye = getBitmap("img/leftEye.png", 104.5, 128.5);
+		leftEye = getSprite("img/leftEye.png", 104.5, 128.5);
 		container.addChild(leftEye);
 		
-		rightEye = getBitmap("img/rightEye.png", 193, 122);
+		rightEye = getSprite("img/rightEye.png", 193, 122);
 		container.addChild(rightEye);
+		
+		this.parent = parent;
+		parent.addChild(container);		
 	}
 	
 	
@@ -59,14 +66,21 @@ import nme.Lib;
 	 * @param	?centre
 	 * @return
 	 */
-	private function getBitmap(assetPath:String, x:Float, y:Float, ?centre:Bool=true):Bitmap {
+	private function getSprite(assetPath:String, x:Float, y:Float, ?centre:Bool=true):Sprite {
 	
 		var bd	:BitmapData = nme.Assets.getBitmapData(assetPath);
-		var bmp	:Bitmap 	= new Bitmap(bd);
+		var bmp	:Bitmap 	= new Bitmap(bd, PixelSnapping.AUTO, true);
 		
-		bmp.x = centre ? (-bd.width  / 2) + x : x;
-		bmp.y = centre ? (-bd.height / 2) + y : y;
+		bmp.x = centre ? (-bd.width  / 2) : 0;
+		bmp.y = centre ? (-bd.height / 2) : 0;
 		
-		return bmp;
+		var spr = new Sprite();
+		spr.addChild(bmp);
+		spr.mouseChildren = false;
+		
+		spr.x = x;
+		spr.y = y;
+		
+		return spr;
 	}
 }

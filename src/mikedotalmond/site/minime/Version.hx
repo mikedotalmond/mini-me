@@ -9,8 +9,8 @@ package mikedotalmond.site.minime;
 	
 	static public inline var Major:Int = 0;
 	static public inline var Minor:Int = 0;
-	static public inline var Build:Int = 46114;
-	static public inline var Revision:Int = 27;
+	static public inline var Build:Int = 46115;
+	static public inline var Revision:Int = 84;
 	
 	#if flash
 	static public inline var Platform:String = "Flash";

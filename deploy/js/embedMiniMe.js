@@ -1,5 +1,8 @@
 /**
- * ...
+ * Embed script for NME authored content targetting Flash and HTML5 targets
+ * 
+ * Will use Flash where available, HTML5 everywhere else.
+ * 
  * @author Mike Almond - https://github.com/mikedotalmond
  */
 
@@ -37,10 +40,10 @@
 		w.winParameters = function (){ return config; } // nme js uses this for Lib.current.loaderVars.parameters
 		
 		var src = 
-			'<div id="' + projectName + 'Container">' + 
+		'<div id="' + projectName + 'Container">' + 
 			'<div id="haxe:jeash" style="background-color:#' + config.backgroundColour + '; width:' + config.width + 'px; height:' + config.height + 'px" data-framerate="60"></div>' +
 			'<sc'+'ri'+'pt id="haxe:jeash:script" type="text/javascript" src="js/' + projectName + '.min.js"></sc'+'ri'+'pt>' +
-			'</div>';
+		'</div>';
 			
 		w.document.write(src);
 	},
