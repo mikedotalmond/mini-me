@@ -16,7 +16,9 @@
 	doSWFEmbed = function(projectName, config){
 		
 		// create the container
-		w.document.write('<div id="' + projectName + 'Container"><div id="' + projectName + '"></div>');
+		var container = 
+			'<div class="'+config.containerClass+'" id="' + projectName + 'Container" style="margin-bottom:48px;width:'+config.width+'px;height:'+config.height+'px;"><div id="'+config.projectName+'"/></div>'; 
+		w.document.write(container);
 		
 		var params = {
 			menu: "false",
@@ -40,7 +42,7 @@
 		w.winParameters = function (){ return config; } // nme js uses this for Lib.current.loaderVars.parameters
 		
 		var src = 
-		'<div id="' + projectName + 'Container">' + 
+		'<div class="'+config.containerClass+'" id="' + projectName + 'Container" style="width:'+config.width+'px;height:'+config.height+'px;">' + 
 			'<div id="haxe:jeash" style="background-color:#' + config.backgroundColour + '; width:' + config.width + 'px; height:' + config.height + 'px" data-framerate="60"></div>' +
 			'<sc'+'ri'+'pt id="haxe:jeash:script" type="text/javascript" src="js/' + projectName + '.min.js"></sc'+'ri'+'pt>' +
 		'</div>';
@@ -70,6 +72,6 @@
 	};
 	
 	//
-	init({projectName:"minime", width:300, height:300, backgroundColour:"F0DF69"});
+	init({projectName:"minime", width:300, height:300, backgroundColour:"F0DF69", containerClass:"aligncenter"});
 	
 })(window);
