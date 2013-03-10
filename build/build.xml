@@ -17,7 +17,7 @@
 	
 	
 	<!-- build properties -->
-	<property name="dir.deploy" value="${basedir}/deploy"/>
+	<property name="dir.deploy" value="${basedir}/deploy/labs/minime"/>
 	<property name="file.deployedJS" value="${dir.deploy}/js/${projectName}.min.js"/>
 	
 	<property name="file.flash" value="${basedir}/bin/flash/bin/${projectName}.swf"/>
