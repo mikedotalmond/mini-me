@@ -35,22 +35,25 @@ import nme.Lib;
 		
 		container = new Sprite();
 		
-		body = getSprite("img/body.png", 37, 23, false);
+		container.mouseEnabled = true;
+		container.mouseChildren = true;
+		
+		body = getSprite("labs/minime/img/body.png", 37, 23, false);
 		parent.addChild(body);
 		
-		mouth = getSprite("img/mouth.png", 157, 198.5);
+		mouth = getSprite("labs/minime/img/mouth.png", 157, 198.5);
 		container.addChild(mouth);
 		
-		leftBrow = getSprite("img/leftBrow.png", 103, 104);
+		leftBrow = getSprite("labs/minime/img/leftBrow.png", 103, 104);
 		container.addChild(leftBrow);
 		
-		rightBrow = getSprite("img/rightBrow.png", 186, 96.5);
+		rightBrow = getSprite("labs/minime/img/rightBrow.png", 186, 96.5);
 		container.addChild(rightBrow);
 		
-		leftEye = getSprite("img/leftEye.png", 104.5, 128.5);
+		leftEye = getSprite("labs/minime/img/leftEye.png", 104.5, 128.5);
 		container.addChild(leftEye);
 		
-		rightEye = getSprite("img/rightEye.png", 193, 122);
+		rightEye = getSprite("labs/minime/img/rightEye.png", 193, 122);
 		container.addChild(rightEye);
 		
 		this.parent = parent;

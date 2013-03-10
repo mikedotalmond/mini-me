@@ -9,7 +9,23 @@
 	
 	<div>
 		<!-- put this whereever you want the content to get embedded in the page -->
-		<script type="text/javascript" src="js/embedMiniMe.js"></script>
+		<script type="text/javascript">
+		window.nmeEmbedConfig = {
+			name			:"minime", 
+			assetRoot		:"./", 
+			width			:300, 
+			height			:300, 
+			backgroundColour:"F0DF69", 
+			containerStyles	:"padding-bottom:48px;", 
+			containerClass	:"aligncenter",
+				flash : {
+				minVersion		: "10.3.0",
+				wmode			: "opaque",
+				allowFullscreen	: false
+			}
+		};
+		</script>
+		<script type="text/javascript" src="js/embedNME.js"></script>
 	</div>
 	
 </body>

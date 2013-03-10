@@ -22,7 +22,7 @@
 	<haxelib name="actuate" />
 	
 	<!-- assets -->
-	<assets path="assets/img" rename="img" />
+	<assets path="assets/img" rename="labs/minime/img" />
 	
 	<!-- DLLs -->
 	<ndll name="std" />

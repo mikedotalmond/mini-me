@@ -22,7 +22,7 @@
 	
 	<property name="file.flash" value="${basedir}/bin/flash/bin/${projectName}.swf"/>
 	<property name="file.html5" value="${basedir}/bin/html5/bin/${projectName}.js"/>
-	<property name="dir.html5Img" value="${basedir}/bin/html5/bin/img"/>
+	<property name="dir.html5Img" value="${basedir}/bin/html5/bin/labs/minime/img"/>
 	<!-- /build properties -->
 	
 	

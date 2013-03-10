@@ -36,6 +36,7 @@ class Main extends Sprite {
 		inited = true;
 		
 		trace("[minime] " + Version.toString());
+		trace("[minime] https://github.com/mikedotalmond/mini-me");
 		
 		head = new Head(new HeadParts(this));
 		
