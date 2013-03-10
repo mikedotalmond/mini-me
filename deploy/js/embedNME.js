@@ -14,13 +14,13 @@
 	defaultConfig = {
 		name			: "nmeEmbedConfig-not-set", 
 		width			: 960, 
-		height			: 600, 
+		height			: 640, 
 		assetRoot		: "./", 
 		backgroundColour: "ffffff", 
 		containerStyles	: "", 
 		containerClass	: "",
 		flash : {
-			minVersion		: "11.2.0",
+			minVersion		: "10.3",
 			wmode			: "direct",
 			allowFullscreen	: true
 		}
@@ -74,13 +74,8 @@
 		
 		if(typeof config === "undefined") { config = defaultConfig; }
 		
-		var
-		playerVersion 	= w.swfobject.getFlashPlayerVersion(),
-		majorVersion 	= playerVersion.major,
-		minorVersion 	= playerVersion.minor;
-		
 		// use flash if it's available, 
-		if(majorVersion > 10 || (majorVersion>=10 && minorVersion >= 3)){ // 10.3 minimum...
+		if(w.swfobject.hasFlashPlayerVersion(config.flash.minVersion)){
 			doSWFEmbed(config);
 		} else { // or js/html5 if not
 			doJSEmbed(config);
