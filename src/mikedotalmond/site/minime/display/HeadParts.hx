@@ -19,8 +19,11 @@ import nme.Lib;
 	public var parent(default, null)	:Sprite;
 	public var container(default, null)	:Sprite;
 	
-	public var body(default, null)		:Sprite;
+	public var torso(default, null)		:Sprite;
+	public var skull(default, null)		:Sprite;
 	public var mouth(default, null)		:Sprite;
+	public var leftEar(default, null)	:Sprite;
+	public var rightEar(default, null)	:Sprite;
 	public var leftBrow(default, null)	:Sprite;
 	public var rightBrow(default, null)	:Sprite;
 	public var leftEye(default, null)	:Sprite;
@@ -38,11 +41,20 @@ import nme.Lib;
 		container.mouseEnabled = true;
 		container.mouseChildren = true;
 		
-		body = getSprite("labs/minime/img/body.png", 37, 23, false);
-		parent.addChild(body);
+		var torso = getSprite("labs/minime/img/torso.png", 56, 199, false);
+		parent.addChild(torso);
+		
+		skull = getSprite("labs/minime/img/skull.png", 58, 24, false);
+		container.addChild(skull);
 		
 		mouth = getSprite("labs/minime/img/mouth.png", 157, 198.5);
 		container.addChild(mouth);
+		
+		leftEar = getSprite("labs/minime/img/leftEar.png", 37, 133, false);
+		container.addChild(leftEar);
+		
+		rightEar = getSprite("labs/minime/img/rightEar.png", 243, 127, false);
+		container.addChild(rightEar);
 		
 		leftBrow = getSprite("labs/minime/img/leftBrow.png", 103, 104);
 		container.addChild(leftBrow);
