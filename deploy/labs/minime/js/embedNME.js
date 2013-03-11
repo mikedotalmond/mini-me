@@ -32,7 +32,7 @@
 	doSWFEmbed = function(config){
 		
 		// create the container
-		var container = '<div class="'+config.containerClass+'" id="' + config.name + 'Container" style="'+config.containerStyles+'width:'+config.width+'px;height:'+config.height+'px;"><div id="'+config.name+'"/></div>'; 
+		var container = '<div class="'+config.containerClass+'" id="' + config.name + 'Container" style="'+config.containerStyles+'width:'+config.width+'px;height:'+config.height+'px;"><div id="'+config.name+'"></div></div>'; 
 		w.document.write(container);
 		
 		var params = {
